@@ -22,9 +22,7 @@ function getSuperHeroList() {
         var heroesList = $(allHeroes);
         $('#superHeroes').append(heroesList);
         $('button').click(function () {
-
             var url = BASE_URL + 'api/hero/' + $(this).attr("id");
-            console.log(url);
             $.get(url, function (response) {
                 handleSingleResponse(response);
             })
@@ -32,12 +30,13 @@ function getSuperHeroList() {
         });
 
         function handleSingleResponse(object){
+            $('#Details').empty();
             var DetailedHero = '';
             for (key in object){
-                DetailedHero += key + ' ' + object[key] + ' ';
+                DetailedHero += '<li>' + key + ' ' + object[key] + '</li>';
 
             }
-            console.log(DetailedHero);
+            $('#Details').append(DetailedHero);
         }
     }
 

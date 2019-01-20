@@ -6,3 +6,11 @@
     width: 40%;
     text-justify: newspaper;
 }
+
+img{
+    width: 100px;
+}
+
+input:disabled{
+    background-color: grey;
+}

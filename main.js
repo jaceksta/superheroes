@@ -29,18 +29,22 @@ function getSuperHeroList() {
 
         });
 
+        $('button.delete').click(function () {
+            
+            var url = BASE_URL + 'api/' + $(this).attr("id");
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                success: function (result) {
+                    alert('Usunięto');
+                }
+            });
+        });
+        
+
 
     }
-    $('button.delete').click(function () {
-        var url = BASE_URL + 'api/' + $(this).attr("id");
-        $.ajax({
-            url: url,
-            type: 'DELETE',
-            success: function (result) {
-                alert('Usunięto');
-            }
-        });
-    })
+    
 
     function handleSingleResponse(object) {
         var DetailedHero = '';
@@ -60,6 +64,8 @@ function getSuperHeroList() {
         }
     }
 
+   
+
 
 
 
@@ -67,6 +73,7 @@ function getSuperHeroList() {
 }
 
 window.onload = () => {
+    
     $('#Add').click(function () {
         var Source = '';
         var Key = ''
@@ -111,10 +118,9 @@ window.onload = () => {
 }
 
 $('section').ajaxComplete(function(){
-
+    
     
 });
-
 
 
 

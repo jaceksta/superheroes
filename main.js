@@ -73,17 +73,11 @@ function getSuperHeroList() {
 }
 
 window.onload = () => {
+
+    
     
     $('#Add').click(function () {
-        var Source = '';
-        var Key = ''
-        for (var i = 0; i < 7; i++) {
-            Source = $('#Details').find('li').eq(i).html();
-            Key = $('#Details').find('li').eq(i).attr("class");
-            Source += '<input class="' + Key + '" type="text">';
-
-            $('#Details').find('li').eq(i).html(Source);
-        }
+        Edit();
         $('#second').append('<button id="AddHero">Dodaj nowego bohatera</button>');
         $('button#AddHero').click(function () {
             console.log($('#Details').find('li').eq(0).find('input').val());
@@ -123,7 +117,18 @@ $('section').ajaxComplete(function(){
 });
 
 
+function Edit(){
+    var Source = '';
+    var Key = ''
+    for (var i = 0; i < 7; i++) {
+        Source = $('#Details').find('li').eq(i).find('span').eq(0).html();
+        Source = '<span>' + Source + '</span>'
+        Key = $('#Details').find('li').eq(i).attr("class");
+        Source += '<input class="' + Key + '" type="text">';
 
+        $('#Details').find('li').eq(i).html(Source);
+    }
+}
 
 
 

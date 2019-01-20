@@ -16,18 +16,29 @@ function getSuperHeroList() {
         var allHeroes = '';
         for (let index = 0; index < heroes.length; index++) {
             const hero = heroes[index];
-            allHeroes += '<li>' + hero.id + ' ' + hero.superhero + ' ' + hero.publisher + ' ' + '<button class="details" id="' + hero.id + '">Szczegóły</button>' + '</li>';
+            allHeroes += '<li>' + hero.id + ' ' + hero.superhero + ' ' + hero.publisher + ' ' + '<button class="details" id="' + hero.id + '">Szczegóły</button>' + '<button class="delete" id="hero/' + hero.id + '">Usuń</button>' + '</li>';
 
         }
         var heroesList = $(allHeroes);
         $('#superHeroes').append(heroesList);
-        $('button').click(function () {
+        $('button.details').click(function () {
             var url = BASE_URL + 'api/hero/' + $(this).attr("id");
             $.get(url, function (response) {
                 handleSingleResponse(response);
             })
 
         });
+
+        $('button.delete').click(function(){
+            var url = BASE_URL + 'api/' + $(this).attr("id");
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                success: function(result) {
+                    alert('Usunięto');  
+                }
+            });
+        })
 
         function handleSingleResponse(object){
             $('#Details').empty();

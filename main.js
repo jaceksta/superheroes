@@ -21,6 +21,7 @@ function getSuperHeroList() {
         }
         var heroesList = $(allHeroes);
         $('#superHeroes').append(heroesList);
+        
         $('button.details').click(function () {
             var url = BASE_URL + 'api/hero/' + $(this).attr("id");
             $.get(url, function (response) {
@@ -53,6 +54,9 @@ function getSuperHeroList() {
         }
         if ($('#EditHero').length) {
             $('#EditHero').remove();
+        }
+        if ($('#EditHeroSend').length){
+            $('#EditHeroSend').remove();
         }
         var DetailedHero = '';
         var i = 0;

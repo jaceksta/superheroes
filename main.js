@@ -86,18 +86,33 @@ function getSuperHeroList() {
                     description: $('#Details').find('li').eq(6).find('input').val()
                 };
                 console.log(object);
-                object = JSON.stringify(object);
+                object2 = JSON.stringify(object);
                 var url = BASE_URL + 'api/hero/' + $('#Details').find('li').eq(0).find('input').val();
 
                 console.log(url);
+                var DetailedHero = '';
+                        var i = 0;
+                        for (key in object) {
+                            DetailedHero = '<span>' + $('#Details').find('li').eq(i).find('span').eq(0).html() + '</span>';
+                            console.log(DetailedHero);
+                            if (key == 'url') {
+                                DetailedHero += '<img src="' + object[key] + '">'
+                            } else {
+                                DetailedHero += '<span>' + object[key] + '</span>';
+                            }
+
+                            $('#Details').find('li').eq(i).html(DetailedHero);
+                            i++;
+
+                        }
                 $.ajax({
                     url: url,
                     type: 'PUT',
-                    data: object,
+                    data: object2,
                     contentType: "application/json; charset=utf-8", // this
                     dataType: "json", // and this
-                    success: function (result) {
-                        alert('Zedytowano');
+                    success: function () {
+                        
                     }
                 });
             })
